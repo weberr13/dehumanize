@@ -64,6 +64,8 @@ func TestYearDate(t *testing.T) {
 	Convey("garbage conversion", t, func() {
 		So(SizeConvert("1nb", 0), ShouldEqual, 0)
 		So(SizeConvert("1.2nb", 0), ShouldEqual, 0)
+		So(SizeConvert("", 0), ShouldEqual, 0)
+		So(SizeConvert("kb", 0), ShouldEqual, 0)
 		So(SizeConvert("1.b", 0), ShouldEqual, 1)
 	})
 }
