@@ -13,6 +13,7 @@ var tbytePattern *regexp.Regexp
 var pbytePattern *regexp.Regexp
 var initErr error
 
+// static initialization, the only way you know if it failed is the test
 func init() {
 	bytePattern, initErr = regexp.Compile(`^(\d+\.*\d*)b`)
 	if initErr != nil {
@@ -39,6 +40,8 @@ func init() {
 		return
 	}
 }
+
+// use a regular expression to convert a human readable to an approximate number
 func convertWithReg(s string, r *regexp.Regexp, base int64) int64 {
 	ms := r.FindStringSubmatch(string(s))
 	if ms != nil && len(ms) == 2 {
@@ -49,6 +52,9 @@ func convertWithReg(s string, r *regexp.Regexp, base int64) int64 {
 	}
 	return 0
 }
+
+// convert a supported size from human readable to an approximate size, if the base is 0, kb = 1024
+// or you can specify it for your needs (eg marketing/metric kbytes of 1000bytes)
 func SizeConvert(s string, base int64) (size int64) {
 	if base == 0 {
 		base = 1024
