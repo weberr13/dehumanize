@@ -41,6 +41,11 @@ func TestYearDate(t *testing.T) {
 		So(SizeConvert("1tb", 1000), ShouldEqual, 1000000000000)
 		So(SizeConvert("1.2tb", 1000), ShouldEqual, 1200000000000)
 	})
+	Convey("tbytes conversion", t, func() {
+		So(SizeConvert("1pb", 0), ShouldEqual, 1024*1024*1024*1024*1024)
+		So(SizeConvert("1pb", 1000), ShouldEqual, 1000000000000000)
+		So(SizeConvert("1.2pb", 1000), ShouldEqual, 1200000000000000)
+	})
 	Convey("garbage conversion", t, func() {
 		So(SizeConvert("1nb", 0), ShouldEqual, 0)
 		So(SizeConvert("1.2nb", 0), ShouldEqual, 0)

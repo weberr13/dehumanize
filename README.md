@@ -10,6 +10,7 @@ Currently supports formats like:
 1.304mb
 1.3gb
 1.2tb
+1.2pb
 
 default for an "unconvertable" format is 0
 

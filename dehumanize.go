@@ -10,6 +10,7 @@ var kbytePattern *regexp.Regexp
 var mbytePattern *regexp.Regexp
 var gbytePattern *regexp.Regexp
 var tbytePattern *regexp.Regexp
+var pbytePattern *regexp.Regexp
 var initErr error
 
 func init() {
@@ -30,6 +31,10 @@ func init() {
 		return
 	}
 	tbytePattern, initErr = regexp.Compile(`^(\d+\.*\d*)tb`)
+	if initErr != nil {
+		return
+	}
+	pbytePattern, initErr = regexp.Compile(`^(\d+\.*\d*)pb`)
 	if initErr != nil {
 		return
 	}
@@ -65,6 +70,10 @@ func SizeConvert(s string, base int64) (size int64) {
 		return size
 	}
 	size = convertWithReg(s, tbytePattern, base*base*base*base)
+	if size != 0 {
+		return size
+	}
+	size = convertWithReg(s, pbytePattern, base*base*base*base*base)
 	if size != 0 {
 		return size
 	}
