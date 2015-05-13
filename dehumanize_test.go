@@ -1,23 +1,11 @@
 package dehumanize
 
 import (
-	log "github.schq.secious.com/Logrhythm/Godeps/_workspace/src/github.com/cihub/seelog"
-	. "github.schq.secious.com/Logrhythm/Godeps/_workspace/src/github.com/smartystreets/goconvey/convey"
-	"net/http"
+	log "github.com/cihub/seelog"
+	. "github.com/smartystreets/goconvey/convey"
 	"testing"
 )
 
-type mockWriter struct {
-}
-
-func (mockWriter) Header() http.Header {
-	return nil
-}
-func (mockWriter) Write(data []byte) (int, error) {
-	return 0, nil
-}
-func (mockWriter) WriteHeader(header int) {
-}
 func TestYearDate(t *testing.T) {
 
 	defer log.Flush()
